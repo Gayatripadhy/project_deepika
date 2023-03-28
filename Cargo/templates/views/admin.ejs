@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargo</title>
+    <!----======== CSS ======== -->
+
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <!--<title>Dashboard Sidebar Menu</title>-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
+</head>
+
+<body>
+    <nav class="sidebar">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <!--<img src="logo.png" alt="">-->
+                </span>
+
+                <div class="text logo-text">
+                    <span class="name">ADMIN</span>
+                   
+                </div>
+            </div>
+            <!-- <i class='bx bx-chevron-right toggle'></i> -->
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+
+                <ul class="menu-links">
+                   
+
+                    <li class="nav-link">
+                        <a href="#addproduct" onclick="addproduct()">
+                            <i class='bx bx-pie-chart-alt icon'></i>
+                            <span class="text nav-text">Product Details</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                      <a href="#userList" onclick="userList()">
+                          <i class='bx bx-bell icon'></i>
+                          <span class="text nav-text">Add Category</span>
+                      </a>
+                  </li>
+				  
+
+                    <li class="nav-link">
+                        <a href="#account" onclick="account()">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">Add Locations</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#stock" onclick="stock()">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">Payment Status</span>
+                        </a>
+                    </li>
+
+					<li class="nav-link">
+                        <a href="#account" onclick="category()">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">Category</span>
+                        </a>
+                    </li>
+					<li class="nav-link">
+                        <a href="#account" onclick="payment()">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">Location</span>
+                        </a>
+                    </li>
+
+					<li class="nav-link">
+                        <a href="#price" onclick="price()">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">Price</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <a href="/logout">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+            </div>
+
+        </div>
+    </nav>
+
+    <section class="home" style="background-image: url(home.jpg);">
+      
+        <div id="Dashboard" class="collpase">
+            <div style="text-align: center;"> 
+                <h1>Hello Bro</h1>
+                 
+            </div>
+        </div>
+      
+		 <!-- ALL USERS LIST   -->
+
+        <div id="addproduct" class="collpase" >
+			<div class="container" >
+				<div class="row">
+					<h1 style="color: white;">Total User Lists</h1>
+					<br>
+				 <table class="table table-striped table-primary" style="background-color: white;">
+				  <thead>
+					<tr>
+					  <th>Name</th>
+					  <th>Email Id</th>
+            <th>Phone Number</th>
+					  <th>Action</th>
+					</tr>
+				  </thead>
+				  <tbody>
+            <% for(var i=0;i< pus.length;i++){  %>
+					<tr>
+					  <td><%= pus[i].fname %></td>
+					  <td><%= pus[i].email %></td>
+            <td><%= pus[i].pnumber %></td>
+					  <td>
+						<a class="btn btn-danger btn-xs" href="#" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></a>
+					  </td>
+					</tr>
+		     <% } %>
+				  </tbody>
+				</table>
+			
+			  
+			  </div>
+			</div>
+        </div>
+
+		     <!--ADD NEW Locations   -->
+
+        <div id="account" class="collpase">
+            <div class="container">
+				<div class="row">
+
+					<div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<div class="panel-title"> Add New Locations</div>
+								 </div>  
+							<div class="panel-body" >
+								<form action="/location" id="EmployeeForm" class="form-horizontal" method="post"  role="form">
+								  
+									<div class="form-group">
+									 
+										<label for="username" class="col-md-3 control-label">Location Name</label>
+										<div class="col-md-9">
+											<input type="text" class="form-control" name="locate" placeholder="Enter YourPassword Category Name">
+										</div>
+									</div>
+								   
+									<div class="form-group">
+										<!-- Button -->                                        
+										<div class="col-md-offset-3 col-md-9">
+										<input type="submit" name="submit" value="Add location" class="btn btn-primary">   
+										</div>
+									</div>
+						
+									
+								</form>
+							 </div>
+						</div>
+			
+				   
+				   
+					
+			 </div> 
+				</div>
+			  </div>
+        </div>
+
+
+        <!--ADD NEW CATEGORY LIST   -->
+
+        <div id="userList" class="collpase">
+			<div class="container">
+				<div class="row">
+
+					<div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<div class="panel-title"> Add New Product Category</div>
+								 </div>  
+							<div class="panel-body" >
+								<form action="/add-new-category" id="EmployeeForm" class="form-horizontal" method="post"  role="form">
+								  
+									<div class="form-group">
+									 
+										<label for="username" class="col-md-3 control-label">Category Name</label>
+										<div class="col-md-9">
+											<input type="text" class="form-control" name="category" placeholder="Enter Category Name">
+										</div>
+									</div>
+								   
+									<div class="form-group">
+										<!-- Button -->                                        
+										<div class="col-md-offset-3 col-md-9">
+										<input type="submit" name="submit" value="Add Category" class="btn btn-primary">   
+										</div>
+									</div>
+						
+									
+								</form>
+							 </div>
+						</div>
+			
+				   
+				   
+					
+			 </div> 
+				</div>
+			  </div>
+        </div>
+
+
+        <!--  Total Payment Status  -->
+      
+        <div id="stock" class="collpase">
+			<div class="container">
+				<div class="row">
+					<h1 style="color: white;">Payment Status</h1>
+					<br>
+				 <table class="table table-striped table-primary" style="background-color: white;">
+				  <thead>
+					<tr>
+					  <th>Name</th>
+					  <th>Transaction Id</th>
+					</tr>
+				  </thead>
+				  <tbody>
+            <% for(var i=0;i< paids.length;i++){  %>
+					<tr>
+					  <td><%= paids[i].name %></td>
+					 
+					  <td>
+              <%= paids[i].tid %>
+					  </td>
+					</tr>
+		  <% } %>
+				  </tbody>
+				</table>
+			
+			  
+			  </div>
+			</div>
+        </div>
+		 <!--  Total View Category  -->
+
+		<div id="category" class="collpase">
+			<div class="container">
+				<div class="row">
+					<h1 style="color: white;">Total Category</h1>
+					<br>
+				 <table class="table table-striped table-primary" style="background-color: white;">
+				  <thead>
+
+					<tr>
+					  <th>Category Name</th>
+					  <th>Action</th>
+					</tr>
+				  </thead>
+				  <tbody>
+            <% for(var i=0;i< cate.length;i++){  %>
+					<tr>
+					  <td><%= cate[i].category %></td>
+					 
+					  <td>
+						<a class="btn btn-danger btn-xs" href="/cat/delete/<%= cate[i]._id %>" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></a>
+					  </td>
+					</tr>
+		 <% }  %>
+				  </tbody>
+				</table>
+			  
+			  </div>
+			</div>
+		  </div>
+    
+         <!--  Total View location  -->
+
+		<div id="payment" class="collpase">
+			<div class="container">
+				<div class="row">
+					<h1 style="color: white;">Total location</h1>
+					<br>
+				 <table class="table table-striped table-primary" style="background-color: white;">
+				  <thead>
+					<tr>
+					  <th>location Name</th>
+					  <th>Action</th>
+					</tr>
+				  </thead>
+				  <tbody>
+				    <% for(var i=0;i< locts.length;i++){  %>
+					<tr>
+					  <td><%= locts[i].locate %></td>
+					 
+					  <td>
+						<a class="btn btn-danger btn-xs" href="/loc/delete/<%= locts[i]._id %>" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></a>
+					  </td>
+					</tr>
+		    <% } %>
+				  </tbody>
+				</table>
+			  
+			  </div>
+			</div>
+		  </div>
+
+		<div id="price" class="collpase">
+			<div class="container">
+				<div class="row">
+
+					<div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<div class="panel-title">Update Price</div>
+								 </div>  
+							<div class="panel-body" >
+								<form action="/prices" id="EmployeeForm" class="form-horizontal" method="post"  role="form">
+								  
+									<div class="form-group">
+									 
+										<label for="username" class="col-md-3 control-label">Price</label>
+                    <% if(paises[0]) { %>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" name="price" value="<%= paises[0].pais %>">
+                      </div>
+                    <% } else { %>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" name="price" value="5">
+                      </div>
+
+                     <% } %>
+									</div>
+								   
+									<div class="form-group">
+										<!-- Button -->                                        
+										<div class="col-md-offset-3 col-md-9">
+										<input type="submit" name="submit" value="Update Price" class="btn btn-primary">   
+										</div>
+									</div>
+						
+									
+								</form>
+							 </div>
+						</div>
+					
+			 </div> 
+				</div>
+			  </div>
+		</div>
+
+          <div class="zoomImgPopup" id="zoomImgPopup">
+              <div class="imgCon">
+                <img id="myImg" src="compman.gif" class="zoomOpenImgStyle" >
+                <div onClick="closeImgPopup()">
+                  <button class="closeZoomImgBtn">OK</button>
+                  </div>
+              </div>
+          </div>
+
+
+    </section>
+
+    
+    <script>
+
+        const imgVal = document.getElementById('productImg').src;
+        var zoomImgPopup = document.getElementById('zoomImgPopup')
+        
+      function zoomImg(){
+
+        console.log("zoomImgPopup",zoomImgPopup)
+        zoomImgPopup.classList.add('open-zoomImgPopup')
+        console.log("fffvfvfvc",imgVal)
+        document.getElementById("myImg").src = imgVal;
+      }
+      function closeImgPopup(){
+        zoomImgPopup.classList.remove('open-zoomImgPopup')
+      }
+
+        const body = document.querySelector('body'),
+            sidebar = body.querySelector('nav'),
+            toggle = body.querySelector(".toggle"),
+            searchBtn = body.querySelector(".search-box"),
+            modeSwitch = body.querySelector(".toggle-switch"),
+            modeText = body.querySelector(".mode-text");
+
+        toggle.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+        })
+
+
+
+        searchBtn.addEventListener("click", () => {
+            sidebar.classList.remove("close");
+        })
+
+
+
+        modeSwitch.addEventListener("click", () => {
+            body.classList.toggle("dark");
+
+            if (body.classList.contains("dark")) {
+                modeText.innerText = "Light mode";
+            } else {
+                modeText.innerText = "Dark mode";
+
+            }
+        });
+
+        function dashboard() {
+            document.getElementById("Dashboard").classList.add('collpase-open');
+            document.getElementById("Dashboard").classList.remove('collpase');
+            document.getElementById("addproduct").classList.remove('collpase-open');
+            document.getElementById("addproduct").classList.add('collpase');
+            document.getElementById("payment").classList.remove('collpase-open');
+            document.getElementById("payment").classList.add('collpase');
+            document.getElementById("account").classList.remove('collpase-open');
+            document.getElementById("account").classList.add('collpase');
+            document.getElementById("userList").classList.remove('collpase-open');
+            document.getElementById("userList").classList.add('collpase');
+            document.getElementById("category").classList.remove('collpase-open');
+            document.getElementById("category").classList.add('collpase');
+            document.getElementById("stock").classList.remove('collpase-open');
+            document.getElementById("stock").classList.add('collpase');
+			document.getElementById("price").classList.remove('collpase-open');
+            document.getElementById("price").classList.add('collpase');
+
+        }
+
+        function payment() {
+            document.getElementById("payment").classList.add('collpase-open');
+            document.getElementById("payment").classList.remove('collpase');
+            document.getElementById("addproduct").classList.remove('collpase-open');
+            document.getElementById("addproduct").classList.add('collpase');
+            document.getElementById("Dashboard").classList.remove('collpase-open');
+            document.getElementById("Dashboard").classList.add('collpase');
+            document.getElementById("account").classList.remove('collpase-open');
+            document.getElementById("account").classList.add('collpase');
+            document.getElementById("userList").classList.remove('collpase-open');
+            document.getElementById("userList").classList.add('collpase');
+            document.getElementById("category").classList.remove('collpase-open');
+            document.getElementById("category").classList.add('collpase');
+            document.getElementById("stock").classList.remove('collpase-open');
+            document.getElementById("stock").classList.add('collpase');
+			document.getElementById("price").classList.remove('collpase-open');
+            document.getElementById("price").classList.add('collpase');
+
+        }
+
+        function addproduct() {
+
+            document.getElementById("addproduct").classList.add('collpase-open');
+            document.getElementById("addproduct").classList.remove('collpase');
+            document.getElementById("payment").classList.remove('collpase-open');
+            document.getElementById("payment").classList.add('collpase');
+            document.getElementById("Dashboard").classList.remove('collpase-open');
+            document.getElementById("Dashboard").classList.add('collpase');
+            document.getElementById("account").classList.remove('collpase-open');
+            document.getElementById("account").classList.add('collpase');
+            document.getElementById("userList").classList.remove('collpase-open');
+            document.getElementById("userList").classList.add('collpase');
+            document.getElementById("category").classList.remove('collpase-open');
+            document.getElementById("category").classList.add('collpase');
+            document.getElementById("stock").classList.remove('collpase-open');
+            document.getElementById("stock").classList.add('collpase');
+			document.getElementById("price").classList.remove('collpase-open');
+            document.getElementById("price").classList.add('collpase');
+
+
+        }
+        function account() {
+            document.getElementById("account").classList.add('collpase-open');
+            document.getElementById("account").classList.remove('collpase');
+            document.getElementById("addproduct").classList.remove('collpase-open');
+            document.getElementById("addproduct").classList.add('collpase');
+            document.getElementById("Dashboard").classList.remove('collpase-open');
+            document.getElementById("Dashboard").classList.add('collpase');
+            document.getElementById("payment").classList.remove('collpase-open');
+            document.getElementById("payment").classList.add('collpase');
+            document.getElementById("userList").classList.remove('collpase-open');
+            document.getElementById("userList").classList.add('collpase');
+            document.getElementById("category").classList.remove('collpase-open');
+            document.getElementById("category").classList.add('collpase');
+            document.getElementById("stock").classList.remove('collpase-open');
+            document.getElementById("stock").classList.add('collpase');
+			document.getElementById("price").classList.remove('collpase-open');
+            document.getElementById("price").classList.add('collpase');
+
+        }
+        function userList() {
+            document.getElementById("userList").classList.add('collpase-open');
+            document.getElementById("userList").classList.remove('collpase');
+            document.getElementById("account").classList.remove('collpase-open');
+            document.getElementById("account").classList.add('collpase');
+            document.getElementById("category").classList.remove('collpase-open');
+            document.getElementById("category").classList.add('collpase');
+            document.getElementById("addproduct").classList.remove('collpase-open');
+            document.getElementById("addproduct").classList.add('collpase');
+            document.getElementById("Dashboard").classList.remove('collpase-open');
+            document.getElementById("Dashboard").classList.add('collpase');
+            document.getElementById("payment").classList.remove('collpase-open');
+            document.getElementById("payment").classList.add('collpase');
+            document.getElementById("stock").classList.remove('collpase-open');
+            document.getElementById("stock").classList.add('collpase');
+			document.getElementById("price").classList.remove('collpase-open');
+            document.getElementById("price").classList.add('collpase');
+
+        }
+        function category() {
+            document.getElementById("category").classList.add('collpase-open');
+            document.getElementById("category").classList.remove('collpase');
+            document.getElementById("account").classList.remove('collpase-open');
+            document.getElementById("account").classList.add('collpase');
+            document.getElementById("addproduct").classList.remove('collpase-open');
+            document.getElementById("addproduct").classList.add('collpase');
+            document.getElementById("Dashboard").classList.remove('collpase-open');
+            document.getElementById("Dashboard").classList.add('collpase');
+            document.getElementById("payment").classList.remove('collpase-open');
+            document.getElementById("payment").classList.add('collpase');
+            document.getElementById("userList").classList.remove('collpase-open');
+            document.getElementById("userList").classList.add('collpase');
+            document.getElementById("stock").classList.remove('collpase-open');
+            document.getElementById("stock").classList.add('collpase');
+			document.getElementById("price").classList.remove('collpase-open');
+            document.getElementById("price").classList.add('collpase');
+
+        }
+
+        function stock() {
+            document.getElementById("stock").classList.add('collpase-open');
+            document.getElementById("stock").classList.remove('collpase');
+            document.getElementById("category").classList.remove('collpase-open');
+            document.getElementById("category").classList.add('collpase');
+            document.getElementById("account").classList.remove('collpase-open');
+            document.getElementById("account").classList.add('collpase');
+            document.getElementById("addproduct").classList.remove('collpase-open');
+            document.getElementById("addproduct").classList.add('collpase');
+            document.getElementById("Dashboard").classList.remove('collpase-open');
+            document.getElementById("Dashboard").classList.add('collpase');
+            document.getElementById("payment").classList.remove('collpase-open');
+            document.getElementById("payment").classList.add('collpase');
+            document.getElementById("userList").classList.remove('collpase-open');
+            document.getElementById("userList").classList.add('collpase');
+			document.getElementById("price").classList.remove('collpase-open');
+            document.getElementById("price").classList.add('collpase');
+        }
+		function price(){
+			document.getElementById("price").classList.add('collpase-open');
+            document.getElementById("price").classList.remove('collpase');
+			document.getElementById("stock").classList.remove('collpase-open');
+            document.getElementById("stock").classList.add('collpase');
+            document.getElementById("category").classList.remove('collpase-open');
+            document.getElementById("category").classList.add('collpase');
+            document.getElementById("account").classList.remove('collpase-open');
+            document.getElementById("account").classList.add('collpase');
+            document.getElementById("addproduct").classList.remove('collpase-open');
+            document.getElementById("addproduct").classList.add('collpase');
+            document.getElementById("Dashboard").classList.remove('collpase-open');
+            document.getElementById("Dashboard").classList.add('collpase');
+            document.getElementById("payment").classList.remove('collpase-open');
+            document.getElementById("payment").classList.add('collpase');
+            document.getElementById("userList").classList.remove('collpase-open');
+            document.getElementById("userList").classList.add('collpase');
+
+		}
+
+    </script>
+
+
+
+</body>
+
+</html>

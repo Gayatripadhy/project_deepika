@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+        <!-- <title> Responsive Drop Down Navigation Menu | CodingLab </title>-->
+    <link rel="stylesheet" href="homeStyle.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The cargo management system</title>
+</head>
+
+<body>
+    <nav>
+        <div class="navbar">
+            <i class='bx bx-menu'></i>
+            <div class="logo"><a href="#">The cargo management system</a></div>
+            <div class="nav-links">
+                <div class="sidebar-logo">
+                    <span class="logo-name">CodingLab</span>
+                    <i class='bx bx-x'></i>
+                </div>
+                <ul class="links">
+                    <li><a href="/">HOME</a></li>
+                    <li>
+                        <a href="/product">Products</a>
+                    </li>
+                    <li><a href="about.html">ABOUT US</a></li>
+                    <li><a href="contact.html">CONTACT US</a></li>
+                </ul>
+            </div>
+            <div class="search-box">
+                <a href="/logout"> <i>Logout</i> </a>
+            </div>
+        </div>
+    </nav>
+    <!-- -------------------------------l0gin-------------------------------- -->
+
+    <div class="homePageCont">
+        <div class="imgCon">
+            <img class="imgS" src="Home.jpg">
+            <div class="cargoInfo">
+                <p><b><span class="firstTitletext">T</span> he cargo management system</b></p>
+                <button class="trackBtn" onClick="openTrackPopup()">Track Your Order </button>
+            </div>
+        </div>
+
+        <div class="trackPopup" id="trackPopup">
+            <div class="trackCon">
+                <div class="orderInput"><input class="trackInput" type="text" placeholder="Enter your order id...">
+                </div>
+                <div class="trackBtnCon"><button class="trckBtn"> <a href="/tracking">Tack</a></button></div>
+            </div>
+            
+            </div>
+        </div>
+
+        <!-- -------------------------------l0gin------end-------------------------- -->
+
+        <!--<script src="script.js"></script>-->
+        <script>
+            // search-box open close js code
+            let navbar = document.querySelector(".navbar");
+            let searchBox = document.querySelector(".search-box .bx-search");
+            // let searchBoxCancel = document.querySelector(".search-box .bx-x");
+
+            var trackPopup = document.getElementById("trackPopup");
+            function openTrackPopup() {
+                console.log("trackPopup--", trackPopup)
+                trackPopup.classList.add("open-trackPopup")
+            }
+
+
+            function ClosePopup() {
+                event.preventDefault();
+                trackPopup.classList.remove("open-trackPopup")
+            }
+
+            searchBox.addEventListener("click", () => {
+                navbar.classList.toggle("showInput");
+                if (navbar.classList.contains("showInput")) {
+                    searchBox.classList.replace("bx-search", "bx-x");
+                } else {
+                    searchBox.classList.replace("bx-x", "bx-search");
+                }
+            });
+
+            // sidebar open close js code
+            let navLinks = document.querySelector(".nav-links");
+            let menuOpenBtn = document.querySelector(".navbar .bx-menu");
+            let menuCloseBtn = document.querySelector(".nav-links .bx-x");
+            menuOpenBtn.onclick = function () {
+                navLinks.style.left = "0";
+            }
+            menuCloseBtn.onclick = function () {
+                navLinks.style.left = "-100%";
+            }
+
+
+            // sidebar submenu open close js code
+            let htmlcssArrow = document.querySelector(".htmlcss-arrow");
+            htmlcssArrow.onclick = function () {
+                navLinks.classList.toggle("show1");
+            }
+            let moreArrow = document.querySelector(".more-arrow");
+            moreArrow.onclick = function () {
+                navLinks.classList.toggle("show2");
+            }
+            let jsArrow = document.querySelector(".js-arrow");
+            jsArrow.onclick = function () {
+                navLinks.classList.toggle("show3");
+            }
+
+            const one = document.querySelector(".one");
+
+            const two = document.querySelector(".two");
+
+            const three = document.querySelector(".three");
+
+            const four = document.querySelector(".four");
+
+            const five = document.querySelector(".five");
+
+            const six = document.querySelector(".six");
+
+            const seven = document.querySelector(".seven");
+
+            setInterval(trackFunction, 1000);
+
+            function trackFunction() {
+                // Code to be executed
+                setTimeout(function () {
+                    one.classList.add("active");
+                }, 10);
+                setTimeout(function () {
+                    two.classList.add("active");
+                }, 10);
+                setTimeout(function () {
+                    three.classList.add("active");
+                }, 10);
+                setTimeout(function () {
+                    four.classList.add("active");
+                }, 10);
+                setTimeout(function () {
+                    five.classList.add("active");
+                }, 15000);
+                setTimeout(function () {
+                    six.classList.add("active");
+                }, 18000);
+                setTimeout(function () {
+                    seven.classList.add("active");
+                }, 21000);
+            }
+
+
+
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Your Product</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- UniIcon CDN Link  -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+</head>
+<body>
+    <div class="main" style="background-image: url(home.jpg);">
+        <div style="background-color: aliceblue">
+        <div class="head">
+            <h1>Hi <%= got.fname%></h1>
+            
+            <!-- <p class="head_2">Using Html, Css & JavaScript</p> -->
+        </div>
+        <p class="head_1">Your Order Status : </p>
+        <ul>
+            <li>
+                <i class="icon uil uil-capture "></i>
+                <div class="progress one">
+                    <p>1</p>
+                    <i class="uil uil-check"></i>
+                </div>
+                <p class="text">Order Placed</p>
+            </li>
+            <li>
+                <i class="icon uil uil-clipboard-notes"></i>
+                <div class="progress two">
+                    <p>2</p>
+                    <i class="uil uil-check"></i>
+                </div>
+                <p class="text">Order processed</p>
+            </li>
+            <li>
+                <i class="icon uil uil-credit-card"></i>
+                <div class="progress three">
+                    <p>3</p>
+                    <i class="uil uil-check"></i>
+                </div>
+                <p class="text">Pickup</p>
+            </li>
+            <li>
+                <i class="icon uil uil-exchange"></i>
+                <div class="progress four">
+                    <p>4</p>
+                    <i class="uil uil-check"></i>
+                </div>
+                <p class="text">Shipped</p>
+            </li>
+            <li>
+                <i class="icon uil uil-map-marker"></i>
+                <div class="progress five">
+                    <p>5</p>
+                    <i class="uil uil-check"></i>
+                </div>
+                <p class="text">Out for delivery</p>
+                <div id="numShow" class="numberShowCss">
+                  <p class="number">+9186<%= Math.floor(Math.random() * 100000000)%></p>
+              </div>
+            </li>
+            <li>
+
+              <i class="icon uil uil-map-marker"></i>
+
+              <div class="progress six">
+
+                  <p>7</p>
+
+                  <i class="uil uil-check"></i>
+
+              </div>
+
+              <p class="text">Delivery</p>
+              <div id="Delivery" class="deliveryCss">
+                <p >Expected by <%= new Date().toISOString().split('T')[0] %></p>
+              <p >shipment yet to be delivered</p>
+            </div>
+              
+
+          </li>
+        </ul>
+    </div>
+    </div>
+
+    <script >
+      
+const one = document.querySelector(".one");
+const two = document.querySelector(".two");
+const three = document.querySelector(".three");
+const four = document.querySelector(".four");
+const five = document.querySelector(".five");
+const six = document.querySelector(".six");
+const numShow = document.querySelector(".numberShowCss");
+const deliveryCss = document.querySelector(".deliveryCss");
+
+// const numShow = document.getElementById("numShow");
+setInterval(trackFunction, 100);
+
+function trackFunction() {
+            // Code to be executed
+            setTimeout(function () {
+                one.classList.add("active");
+               
+            }, 1000);
+            setTimeout(function () {
+                two.classList.add("active");
+                
+            }, 2000);
+            setTimeout(function () {
+                three.classList.add("active");
+            }, 3000);
+            setTimeout(function () {
+                four.classList.add("active");
+            }, 4000);
+            setTimeout(function () {
+                five.classList.add("active");
+                numShow.classList.add("numberShowCssActive");
+            }, 5000);
+            setTimeout(function () {
+                six.classList.add("active");
+                deliveryCss.classList.add("deliveryCssCssActive");
+            }, 6000);
+        } 
+    </script>
+</body>
+</html>
+
+
+
+
+
