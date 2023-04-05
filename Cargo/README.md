@@ -1,5 +1,5 @@
 # Cargo
-Step - 1 git clone https://github.com/vikky413/Cargo
+Step - 1 git clone https://github.com/Gayatripadhy/project_deepika
 
 step - 2 cd book
 
