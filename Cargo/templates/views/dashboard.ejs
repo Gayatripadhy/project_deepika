@@ -72,7 +72,7 @@
                     <li class="nav-link">
                         <a href="#addproduct" onclick="addproduct()">
                             <i class='bx bx-pie-chart-alt icon'></i>
-                            <span class="text nav-text">products</span>
+                            <span class="text nav-text">Book Cargo</span>
                         </a>
                     </li>
 
@@ -128,11 +128,6 @@
                 <h3>Email Address : <b><%= getu.email %></b></h3> 
               </div>
                    
-              
-            <div>
-                <h3>Age: <b><%= getu.age %></b></h3> 
-              </div>
-
               <div>
                 <h3>Phone Number: <b><%= getu.pnumber %></b></h3> 
               </div>
@@ -230,6 +225,7 @@
         </div>
 
         <div id="account" class="collpase">
+
          <button style="width: revert;margin-top: 324px;margin-left: 519px;background-color: aliceblue;"><a href="/tracking">Track Now</a></button>
         </div>
 
@@ -252,7 +248,9 @@
 					</tr>
 				  </thead>
                     <tbody>
-                  <% for(var i=0;i< pds.length;i++){  %>
+                  <% for(var i=0;i< pds.length;i++){  
+                     if(pds[i].email == loginUser){
+                    %>
 				
 					<tr>
 					  <td><%= pds[i].PName %></td>
@@ -264,7 +262,7 @@
 					  </td>
 
 					</tr>
-		             <% } %>
+		             <% } }%>
 				  </tbody>
 				</table>
 			  
