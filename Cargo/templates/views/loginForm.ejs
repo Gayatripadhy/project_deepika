@@ -31,7 +31,7 @@
            
               <form action="/login" class="login" method="post">
                  <div class="field">
-                    <input type="text" placeholder="Email Address" name="email" required>
+                    <input type="text" placeholder="Email Address" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                  </div>
                  <div class="field">
                     <input type="password" placeholder="Password" name="password" required>
@@ -48,25 +48,23 @@
               <form action="/signup" class="signup" method="post">
 
                <div class="field">
-                  <input type="text" placeholder="First Name" name="fname" maxlength="15" required>
+                  <input type="text"  placeholder="First Name" name="fname" maxlength="12"  pattern="[A-Za-z]{3,}" required>
                </div>
 
-               <div class="field">
-                  <input type="text" placeholder="Last Name" name="lname" maxlength="15" required>
+               <div class="field"> 
+                  <input type="text" placeholder="Last Name" name="lname" maxlength="12"  pattern="[A-Za-z]{3,}"  required>
                </div>
 
                  <div class="field">
                     <input type="text" placeholder="Email Address" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                  </div>
                  <div class="field">
-                  <input type="text" placeholder="Enter Phone Number" name="pnumber" maxlength="10" pattern="[1-9]{1}[0-9]{9}"  required>
+                  <input type="text" placeholder="Enter Phone Number" name="pnumber" maxlength="10" pattern="[6-9]{1}[0-9]{9}"  required>
                </div>
-                 <div class="field">
-                    <input type="text" placeholder="Age" name="age" maxlength="2" required>
-                 </div>
+                
 
                  <div class="field">
-                  <input type="date" name="dob" required>
+                  <input type="date" min="1900-04-04" max="2020-04-04" name="dob" required>
                 </div>
                
                  
@@ -74,9 +72,6 @@
                   <input type="password" placeholder="Password" name="password" required>
                </div>
 
-                 <div class="field">
-                    <input type="password" placeholder="Confirm Password" name="confirmpassword" required>
-                 </div>
 
                  <div class="field btn">
                     <div class="btn-layer"></div>
