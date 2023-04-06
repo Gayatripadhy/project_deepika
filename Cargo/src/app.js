@@ -9,9 +9,10 @@ const productModel = require("./models/product");
 const categoryModel = require("./models/category");
 const locationModel = require("./models/locations");
 const priceModel = require("./models/price");
-const PaymentModel = require("./models/paymentss")
-var jwt = require("jsonwebtoken");
+const feedbackModel = require('./models/feedback');
 const paymentModel = require("./models/paymentss");
+
+var jwt = require("jsonwebtoken");
 
 
 const port = process.env.PORT || 5000;
@@ -62,7 +63,7 @@ app.get("/dashboard", checkLoginUser,async (req, res) => {
     let cats = await cat.exec()
     let paisa = await rps.exec()
     
-    res.render("dashboard",{msg:'',getu:getu,pds:pds,locts:loct,categ:cats,paise:paisa});
+    res.render("dashboard",{msg:'',getu:getu,pds:pds,locts:loct,categ:cats,paise:paisa,loginUser:loginUser});
    }
    catch(err) {
     throw Error();
@@ -119,37 +120,33 @@ app.post("/signup", function (req, res, next) {
   var fname = req.body.fname;
   var lname = req.body.lname;
   var email = req.body.email;
-  var age = req.body.age;
+
   var dob = req.body.dob;
   var pnumber = req.body.pnumber;
   var password = req.body.password;
-  var confpassword = req.body.confirmpassword;
+  
 
-  if(!fname || !lname || !email || !age || !dob || !pnumber || !password || !confpassword){
+  if(!fname || !lname || !email || !dob || !pnumber || !password ){
     res.render("loginForm",{msg:'Please Fill all details'})
     console.log("Please Fill all details")
   }
   else {
-  if (password != confpassword) {
-    res.render("loginForm",{msg:'Password not matched'});
-    console.log("");
-  } else {
+ 
     var userDetails = new userModel({
       fname:fname,
       lname:lname,
-      age:age,
       dob:dob,
       pnumber:pnumber,
       email: email,
       password: password,
-      confirmpassword: confpassword,
+      
     });
     userDetails.save((err, doc) => {
       if (err) throw err;
       res.render("loginForm",{msg:'SuccessFully Store'});
       console.log("SuccessFully Store");
     });
-  }
+  
 }
 });
 
@@ -273,6 +270,16 @@ app.get("/cat/delete/:id",(req,res)=> {
   });
 })
 
+app.get("/prod/delete/:id",(req,res)=> {
+  var passcat_id = req.params.id;
+  var passdelete = userModel.findByIdAndDelete(passcat_id);
+  passdelete.exec(function (err) {
+    if (err) throw err;
+    res.redirect('/admin');
+  });
+})
+
+
 app.get("/loc/delete/:id",(req,res)=> {
   var passcat_id = req.params.id;
   var passdelete = locationModel.findByIdAndDelete(passcat_id);
@@ -282,12 +289,19 @@ app.get("/loc/delete/:id",(req,res)=> {
   });
 })
 
+app.get('/cancel',(req,res)=> {
+  res.render()
+})
+app.get('/contact',(req,res)=> {
+  res.render('contact',{msg:''})
+})
+
 app.get("/ord/delete/:id",(req,res)=> {
   var passcat_id = req.params.id;
   var passdelete = productModel.findByIdAndDelete(passcat_id);
   passdelete.exec(function (err) {
     if (err) throw err;
-    res.redirect('/admin');
+    res.redirect('/cancel');
   });
 })
 
@@ -297,8 +311,7 @@ app.post("/login", (req, res) => {
   const checkUser = userModel.findOne({ email: email });
   checkUser.exec((err, data) => {
     if (data == null) {
-      res.render("loginForm",{msg:''});
-      console.log("plese insert right data");
+      res.redirect('/fails')
     } else {
       if (err) throw err;
       var getUserID = data._id;
@@ -315,8 +328,7 @@ app.post("/login", (req, res) => {
         }
       
       } else {
-        res.render("loginForm",{msg:''});
-        console.log("username or password not matched");
+       res.redirect('/fails')
       }
     }
   });
@@ -338,7 +350,7 @@ app.get('/admin',async (req,res)=> {
     let loct = await loc.exec()
     let pasa =await rps.exec()
     let paid = await pay.exec()
-    res.render('admin',{pd:pdsd,pus:pus,cate:cats,locts:loct,paises:pasa,paids:paid})
+    res.render('admin',{pd:pdsd,pus:pus,cate:cats,locts:loct,paises:pasa,paids:paid,loginUser:loginUser})
    }
    catch(err) {
     throw Error();
@@ -400,6 +412,30 @@ app.post('/payments',(req,res)=> {
     console.log("SuccessFully Store");
   });
  
+})
+
+app.post('/feedbacks',(req,res)=> {
+  var loginUser = localStorage.getItem('loginUser');
+  const name = req.body.name;
+  const email = req.body.email;
+  const feedback = req.body.feedback;
+  
+  var userDetails = new feedbackModel({
+  name:name,
+  email:email,
+  feedback:feedback
+  });
+  userDetails.save((err, doc) => {
+    if (err) throw err;
+   res.render('contact',{msg:"Feedback saved SuccessFully"})
+  
+  });
+ 
+})
+
+
+app.get('/fails',(req,res)=> {
+  res.render('fails')
 })
 
 app.post('/paymentp',(req,res)=> {
