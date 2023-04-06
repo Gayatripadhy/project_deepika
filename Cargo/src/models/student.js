@@ -15,10 +15,7 @@ const auserSchema = new Schema({
         required:true,
     },
 
-    age : {
-        type:String,
-        required:true,
-    },
+   
     pnumber : {
         type:String,
         required:true,
@@ -34,10 +31,6 @@ const auserSchema = new Schema({
         required:true
     },
 
-    confirmpassword : {
-        type:String,
-        required:true
-    },
 
 });
 
