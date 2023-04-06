@@ -64,7 +64,7 @@
                     <li class="nav-link">
                         <a href="#addproduct" onclick="addproduct()">
                             <i class='bx bx-pie-chart-alt icon'></i>
-                            <span class="text nav-text">Product Details</span>
+                            <span class="text nav-text">User Details</span>
                         </a>
                     </li>
 
@@ -88,7 +88,14 @@
                             <i class='bx bx-bell icon'></i>
                             <span class="text nav-text">Payment Status</span>
                         </a>
-                    </li>
+                    </li> 
+
+                    <li class="nav-link">
+                      <a href="#products" onclick="products()">
+                          <i class='bx bx-bell icon'></i>
+                          <span class="text nav-text">Product Details</span>
+                      </a>
+                  </li>
 
 					<li class="nav-link">
                         <a href="#account" onclick="category()">
@@ -137,7 +144,7 @@
 		 <!-- ALL USERS LIST   -->
 
         <div id="addproduct" class="collpase" >
-			<div class="container" >
+			    <div class="container" >
 				<div class="row">
 					<h1 style="color: white;">Total User Lists</h1>
 					<br>
@@ -151,16 +158,18 @@
 					</tr>
 				  </thead>
 				  <tbody>
-            <% for(var i=0;i< pus.length;i++){  %>
+            <% for(var i=0;i< pus.length;i++){  
+              if(pus[i].email != "real@gmail.com"){
+              %>
 					<tr>
 					  <td><%= pus[i].fname %></td>
 					  <td><%= pus[i].email %></td>
             <td><%= pus[i].pnumber %></td>
 					  <td>
-						<a class="btn btn-danger btn-xs" href="#" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></a>
+						<a class="btn btn-danger btn-xs" href="/prod/delete/<%= pus[i]._id %>" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></a>
 					  </td>
 					</tr>
-		     <% } %>
+		     <% }} %>
 				  </tbody>
 				</table>
 			
@@ -168,7 +177,43 @@
 			  </div>
 			</div>
         </div>
+<div id="products" class="collpase">
+  <div class="container">
+    <div class="row">
+      <h1 style="color: white;">Your Orders</h1>
+      <br>
+     <table class="table table-striped table-primary" style="background-color: white;">
+      <thead>
+      <tr>
+                 <th>Email</th>
+                 <th>Product Name</th>
+                  <th>Product Price</th>
+                  <th>From</th>
+                  <th>To</th>
+                
+      </tr>
+      </thead>
+                <tbody>
+              <% for(var i=0;i< pd.length;i++){  
+               
+                %>
+    
+      <tr>
+        <td><%= pd[i].email %></td>
+        <td><%= pd[i].PName %></td>
+                  <td><%= pd[i].price %></td>
+        <td><%= pd[i].lfrom %></td>
+                  <td><%= pd[i].lto %></td>
+                 
+      </tr>
+             <% } %>
+      </tbody>
+    </table>
+    
+    </div>
+  </div>
 
+</div>
 		     <!--ADD NEW Locations   -->
 
         <div id="account" class="collpase">
@@ -270,7 +315,9 @@
 					</tr>
 				  </thead>
 				  <tbody>
-            <% for(var i=0;i< paids.length;i++){  %>
+            <% for(var i=0;i< paids.length;i++){ 
+              if(paids[i].name != "real@gmail.com"){
+              %>
 					<tr>
 					  <td><%= paids[i].name %></td>
 					 
@@ -278,7 +325,7 @@
               <%= paids[i].tid %>
 					  </td>
 					</tr>
-		  <% } %>
+		  <% }} %>
 				  </tbody>
 				</table>
 			
@@ -467,8 +514,11 @@
             document.getElementById("category").classList.add('collpase');
             document.getElementById("stock").classList.remove('collpase-open');
             document.getElementById("stock").classList.add('collpase');
-			document.getElementById("price").classList.remove('collpase-open');
+			      document.getElementById("price").classList.remove('collpase-open');
             document.getElementById("price").classList.add('collpase');
+            document.getElementById("products").classList.remove('collpase-open');
+            document.getElementById("products").classList.add('collpase');
+
 
         }
 
@@ -489,6 +539,8 @@
             document.getElementById("stock").classList.add('collpase');
 			document.getElementById("price").classList.remove('collpase-open');
             document.getElementById("price").classList.add('collpase');
+            document.getElementById("products").classList.remove('collpase-open');
+            document.getElementById("products").classList.add('collpase');
 
         }
 
@@ -510,6 +562,8 @@
             document.getElementById("stock").classList.add('collpase');
 			document.getElementById("price").classList.remove('collpase-open');
             document.getElementById("price").classList.add('collpase');
+            document.getElementById("products").classList.remove('collpase-open');
+            document.getElementById("products").classList.add('collpase');
 
 
         }
@@ -530,6 +584,8 @@
             document.getElementById("stock").classList.add('collpase');
 			document.getElementById("price").classList.remove('collpase-open');
             document.getElementById("price").classList.add('collpase');
+            document.getElementById("products").classList.remove('collpase-open');
+            document.getElementById("products").classList.add('collpase');
 
         }
         function userList() {
@@ -549,6 +605,8 @@
             document.getElementById("stock").classList.add('collpase');
 			document.getElementById("price").classList.remove('collpase-open');
             document.getElementById("price").classList.add('collpase');
+            document.getElementById("products").classList.remove('collpase-open');
+            document.getElementById("products").classList.add('collpase');
 
         }
         function category() {
@@ -568,6 +626,8 @@
             document.getElementById("stock").classList.add('collpase');
 			document.getElementById("price").classList.remove('collpase-open');
             document.getElementById("price").classList.add('collpase');
+            document.getElementById("products").classList.remove('collpase-open');
+            document.getElementById("products").classList.add('collpase');
 
         }
 
@@ -588,6 +648,8 @@
             document.getElementById("userList").classList.add('collpase');
 			document.getElementById("price").classList.remove('collpase-open');
             document.getElementById("price").classList.add('collpase');
+            document.getElementById("products").classList.remove('collpase-open');
+            document.getElementById("products").classList.add('collpase');
         }
 		function price(){
 			document.getElementById("price").classList.add('collpase-open');
@@ -606,8 +668,33 @@
             document.getElementById("payment").classList.add('collpase');
             document.getElementById("userList").classList.remove('collpase-open');
             document.getElementById("userList").classList.add('collpase');
+            document.getElementById("products").classList.remove('collpase-open');
+            document.getElementById("products").classList.add('collpase');
 
 		}
+    function products() {
+     
+      document.getElementById("products").classList.add('collpase-open');
+            document.getElementById("products").classList.remove('collpase');
+      document.getElementById("price").classList.remove('collpase-open');
+            document.getElementById("price").classList.add('collpase');
+			document.getElementById("stock").classList.remove('collpase-open');
+            document.getElementById("stock").classList.add('collpase');
+            document.getElementById("category").classList.remove('collpase-open');
+            document.getElementById("category").classList.add('collpase');
+            document.getElementById("account").classList.remove('collpase-open');
+            document.getElementById("account").classList.add('collpase');
+            document.getElementById("addproduct").classList.remove('collpase-open');
+            document.getElementById("addproduct").classList.add('collpase');
+            document.getElementById("Dashboard").classList.remove('collpase-open');
+            document.getElementById("Dashboard").classList.add('collpase');
+            document.getElementById("payment").classList.remove('collpase-open');
+            document.getElementById("payment").classList.add('collpase');
+            document.getElementById("userList").classList.remove('collpase-open');
+            document.getElementById("userList").classList.add('collpase');
+           
+
+    }
 
     </script>
 
